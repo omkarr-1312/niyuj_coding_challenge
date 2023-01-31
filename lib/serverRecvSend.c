@@ -6,7 +6,8 @@ int serverRecv( int listenfd, char *buff){
     memset(buff, '\0', sizeof(buff));
     readBytes = Recv( listenfd, buff,MB, 0);
     printf("\nServerRec() success: Buffer= %s ReadBytes: %d\n",buff,readBytes);
-    processRecvData( listenfd, buff);
+    if(readBytes != 0)
+   	 processRecvData( listenfd, buff);
 }
 
 /* serverSend */

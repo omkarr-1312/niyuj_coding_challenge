@@ -14,7 +14,7 @@ int main(int argc, char *argv[]){
 
     while(1){
 	    memset(sendBuff,0,sizeof(sendBuff));
-	    if(read(0,sendBuff,MB) > 0){
+	    if(read(0,sendBuff,MB) != 0){
 	    	clientSend(sockfd,sendBuff);
 	    }
 	    if(strncmp(sendBuff, "bye", 3) == 0){
