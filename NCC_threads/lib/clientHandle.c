@@ -21,7 +21,7 @@ int clientHandle( int listenfd, int *newSocketfd){
     memset(buff,0,sizeof(buff));
     memset( &clientAddress, '\0', sizeof(clientAddress));
     *newSocketfd = Accept( listenfd, (SA *)&clientAddress, &len);
-    printf("[+]Connection Established with %s:%d - Client(%d) with Child Pid - %d\n\n", inet_ntop( AF_INET, &clientAddress.sin_addr, buff, sizeof(buff)), ntohs(clientAddress.sin_port), n_client, getpid());
+    printf("[+]Connection Established with %s:%d - Client(%d)\n\n", inet_ntop( AF_INET, &clientAddress.sin_addr, buff, sizeof(buff)), ntohs(clientAddress.sin_port), n_client);
     return n_client;
 }
 

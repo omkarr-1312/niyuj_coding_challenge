@@ -63,7 +63,7 @@ int changeDir(char *dirName,char *buff){
         return  EXIT_FAILURE;
     }
 
-    memset( buff, '\0', sizeof(buff));
+    memset( buff, '\0',MB);
     getcwd(buff,100);
     if(buff != NULL){
         printf( "\n%s\n", buff);
@@ -81,31 +81,31 @@ int processRecvData( int socket, char *buffer) {
 	    return 0;
     }
     else if(strncmp( buffer, "pwd", 3) ==0) {
-	    memset( buffer, 0, sizeof(buffer));
+	    memset( buffer, 0, MB);
 	    getPwd(buffer);
 	    printf("\ngetPwd() success\n");
             serverSend( socket, buffer);        
-	    memset(buffer,0,sizeof(buffer));
+	    memset(buffer,0,MB);
     }
     else if(strncmp(buffer, "ls",2) == 0) {
-	    memset(buffer,0,sizeof(buffer));
+	    memset(buffer,0,MB);
 	    getLs(buffer);
 	    printf("\ngetLs() success\n");
 	    serverSend(socket,buffer);
-	    memset(buffer,'\0',sizeof(buffer));
+	    memset(buffer,'\0',MB);
     }	
     else if(strncmp(buffer,"cd",2)==0){
 	    sscanf( buffer, "%s %s", commandName, dirName);
             changeDir(dirName, buffer);
             printf("\nchangeDir() success\n");
 	    serverSend(socket,buffer);
-	    memset(buffer,0,sizeof(buffer));
+	    memset(buffer,0,MB);
     }
     else{
  	   // memset(buffer,0,sizeof(buffer));
 	    //buffer = "Please enter valid commands : pwd or ls or cd !\n";
             serverSend(socket, buffer);
-	    memset(buffer,0,sizeof(buffer));
+	    memset(buffer,0,MB);
     }
     return 0;
 }

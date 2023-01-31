@@ -3,7 +3,7 @@
 void *doit(void *arg){
 	int clientSocket = *(int *)arg;
 	char recvBuff[MB];
-	memset(recvBuff,0,sizeof(recvBuff));
+	memset(recvBuff,0,MB);
 	while(1){
 		serverRecv(clientSocket,recvBuff);
 		if(strncmp(recvBuff,"bye",3)==0){
@@ -16,13 +16,13 @@ void *doit(void *arg){
 }
 int main(void){
     int listenfd=0;
-    int clientSocket = 0;
+    int clientSocket;
     pthread_t tid;
     // calling socket(), bind(), listen() with error handling
     createServerSocket( &listenfd);
     while(1){
 	n_client = clientHandle(listenfd,&clientSocket);
-	printf("create client socket : %d\n",clientSocket);
+//	printf("create client socket : %d\n",*clientSocket);
 	if(pthread_create(&tid,NULL,doit,&clientSocket)==0){
 		pthread_detach(pthread_self());
 	}

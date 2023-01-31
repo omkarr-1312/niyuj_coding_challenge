@@ -13,7 +13,8 @@ int main(int argc, char *argv[]){
     createClientSocket( &sockfd, argv[1]);
 
     while(1){
-	    memset(sendBuff,0,sizeof(sendBuff));
+	    memset(recvBuff,0,MB);
+	    memset(sendBuff,0,MB);
 	    if(read(0,sendBuff,MB) != 0){
 	    	clientSend(sockfd,sendBuff);
 	    }
@@ -24,10 +25,9 @@ int main(int argc, char *argv[]){
             }
 
 	   // printf("RecvBuff: %s\n",recvBuff);
-	    memset(recvBuff,0,sizeof(recvBuff));
+	    //memset(recvBuff,0,MB);
 	    clientRecv(sockfd,recvBuff);
 	    printf("\n%s\n\n",recvBuff);
-	    memset(recvBuff,0,sizeof(recvBuff));
     }
     close(sockfd);
     return (EXIT_SUCCESS);
