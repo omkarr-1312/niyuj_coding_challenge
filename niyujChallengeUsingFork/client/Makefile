@@ -1,6 +1,6 @@
 CC = gcc
 LIBPATH = ../lib/
-LIB = createClientSocket.o send_recv.o clientSendRecv.o
+LIB = createClientSocket.o sendRecv.o clientSendRecv.o
 
 HEADER = $(LIBPATH)header.h
 
@@ -13,8 +13,8 @@ client.o: client.c $(HEADER)
 createClientSocket.o: $(LIBPATH)createClientSocket.c $(HEADER)  
 	$(CC) -c $(LIBPATH)createClientSocket.c
 
-send_recv.o: $(LIBPATH)send_recv.c $(HEADER)
-	$(CC) -c $(LIBPATH)send_recv.c
+sendRecv.o: $(LIBPATH)sendRecv.c $(HEADER)
+	$(CC) -c $(LIBPATH)sendRecv.c
 
 clientSendRecv.o: $(LIBPATH)clientSendRecv.c $(HEADER)
 	$(CC) -c $(LIBPATH)clientSendRecv.c

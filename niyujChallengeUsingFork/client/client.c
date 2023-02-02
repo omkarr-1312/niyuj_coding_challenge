@@ -8,12 +8,11 @@ int main(int argc, char *argv[]){
     int sockfd=0;
     char sendBuff[MB];
     char recvBuff[MB];
-   // memset(sendBuff,0,sizeof(sendBuff));
-    //memset(recvBuff,0,sizeof(recvBuff));
     createClientSocket( &sockfd, argv[1]);
 
     while(1){
 	    memset(sendBuff,0,sizeof(sendBuff));
+	    memset(recvBuff,0,sizeof(recvBuff));
 	    if(read(0,sendBuff,MB) != 0){
 	    	clientSend(sockfd,sendBuff);
 	    }
@@ -24,7 +23,6 @@ int main(int argc, char *argv[]){
             }
 
 	   // printf("RecvBuff: %s\n",recvBuff);
-	    memset(recvBuff,0,sizeof(recvBuff));
 	    clientRecv(sockfd,recvBuff);
 	    printf("\n%s\n\n",recvBuff);
     }

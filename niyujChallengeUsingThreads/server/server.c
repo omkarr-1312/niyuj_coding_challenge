@@ -22,7 +22,6 @@ int main(void){
     createServerSocket( &listenfd);
     while(1){
 	n_client = clientHandle(listenfd,&clientSocket);
-//	printf("create client socket : %d\n",*clientSocket);
 	if(pthread_create(&tid,NULL,doit,&clientSocket)==0){
 		pthread_detach(pthread_self());
 	}
